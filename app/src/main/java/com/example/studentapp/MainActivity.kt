@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity() {
         recyclerView.adapter = adapter
 
         addBtn.setOnClickListener {
-            // בהמשך נפתח מסך הוספה
+            startActivity(Intent(this, NewStudentActivity::class.java))
         }
     }
 
