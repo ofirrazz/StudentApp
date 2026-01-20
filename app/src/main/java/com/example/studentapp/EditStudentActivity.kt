@@ -14,6 +14,11 @@ class EditStudentActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_student)
 
+        supportActionBar?.title = "Edit Students"
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+
+
         pos = intent.getIntExtra("pos", -1)
         val student = StudentsRepository.getAt(pos)
         if (student == null) {
@@ -39,8 +44,10 @@ class EditStudentActivity : AppCompatActivity() {
 
         findViewById<Button>(R.id.btnDelete).setOnClickListener {
             StudentsRepository.deleteAt(pos)
+            setResult(RESULT_OK)   // אומר ל-Details: “נמחק”
             finish()
         }
+
 
         findViewById<Button>(R.id.btnSave).setOnClickListener {
             val updated = Student(
@@ -51,7 +58,15 @@ class EditStudentActivity : AppCompatActivity() {
                 isChecked = cbChecked.isChecked
             )
             StudentsRepository.updateAt(pos, updated)
+
+            setResult(RESULT_OK)   // חשוב!
             finish()
         }
+
     }
+    override fun onSupportNavigateUp(): Boolean {
+        finish()
+        return true
+    }
+
 }

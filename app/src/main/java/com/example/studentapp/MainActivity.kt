@@ -14,11 +14,16 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        supportActionBar?.title = "Students List"
 
-        // דמו כדי שתראי משהו
+        // נתוני דמו – רק אם הרשימה ריקה
         if (StudentsRepository.getAll().isEmpty()) {
-            StudentsRepository.add(Student("Dana", "123456789", "0500000000", "Tel Aviv", false))
-            StudentsRepository.add(Student("Ofir", "987654321", "0521111111", "Ramat Gan", true))
+            StudentsRepository.add(
+                Student("Dana", "123456789", "0500000000", "Tel Aviv", false)
+            )
+            StudentsRepository.add(
+                Student("Ofir", "987654321", "0521111111", "Ramat Gan", true)
+            )
         }
 
         val recyclerView = findViewById<RecyclerView>(R.id.rvStudents)
@@ -29,15 +34,14 @@ class MainActivity : AppCompatActivity() {
         adapter = StudentsAdapter(
             StudentsRepository.getAll(),
             onRowClick = { pos ->
-                val i = Intent(this, StudentDetailsActivity::class.java)
-                i.putExtra("pos", pos)
-                startActivity(i)
+                val intent = Intent(this, StudentDetailsActivity::class.java)
+                intent.putExtra("pos", pos)
+                startActivity(intent)
             },
             onCheckedChanged = { pos, checked ->
                 StudentsRepository.getAt(pos)?.isChecked = checked
             }
         )
-
 
         recyclerView.adapter = adapter
 

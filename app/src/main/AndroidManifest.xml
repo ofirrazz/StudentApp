@@ -12,6 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.StudentApp">
         <activity
+            android:name=".StudentDetailsActivity"
+            android:exported="false" />
+
+        <activity
             android:name=".EditStudentActivity"
             android:exported="false" />
         <activity

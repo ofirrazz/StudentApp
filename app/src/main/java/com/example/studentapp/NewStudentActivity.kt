@@ -12,6 +12,10 @@ class NewStudentActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_new_student)
 
+        supportActionBar?.title = "New Students"
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+
         val etName = findViewById<EditText>(R.id.etName)
         val etId = findViewById<EditText>(R.id.etId)
         val etPhone = findViewById<EditText>(R.id.etPhone)
@@ -31,8 +35,15 @@ class NewStudentActivity : AppCompatActivity() {
                 isChecked = cbChecked.isChecked
             )
 
+
             StudentsRepository.add(student)
             finish() // חזרה לרשימה
         }
+
     }
+    override fun onSupportNavigateUp(): Boolean {
+        finish()
+        return true
+    }
+
 }
