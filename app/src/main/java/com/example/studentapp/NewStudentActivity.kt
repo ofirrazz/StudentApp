@@ -18,6 +18,9 @@ class NewStudentActivity : AppCompatActivity() {
         val etAddress = findViewById<EditText>(R.id.etAddress)
         val cbChecked = findViewById<CheckBox>(R.id.cbChecked)
         val btnSave = findViewById<Button>(R.id.btnSave)
+        val btnCancel = findViewById<Button>(R.id.btnCancel)
+        btnCancel.setOnClickListener { finish() }
+
 
         btnSave.setOnClickListener {
             val student = Student(

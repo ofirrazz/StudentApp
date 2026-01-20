@@ -29,12 +29,15 @@ class MainActivity : AppCompatActivity() {
         adapter = StudentsAdapter(
             StudentsRepository.getAll(),
             onRowClick = { pos ->
-                // בהמשך נפתח מסך פרטים
+                val i = Intent(this, StudentDetailsActivity::class.java)
+                i.putExtra("pos", pos)
+                startActivity(i)
             },
             onCheckedChanged = { pos, checked ->
                 StudentsRepository.getAt(pos)?.isChecked = checked
             }
         )
+
 
         recyclerView.adapter = adapter
 
